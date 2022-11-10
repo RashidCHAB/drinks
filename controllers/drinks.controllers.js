@@ -10,7 +10,7 @@ export default {
             description: req.body.description
         }).then((a) => {
             res.json(a)
-        })
+        }).catch({ "error": "Error adding new drink" })
     },
     updateDrink: (req, res) => {
         Drink.findByIdAndUpdate(req.params.drinkId, {
@@ -24,27 +24,27 @@ export default {
             { new: true },)
             .then((a) => {
                 res.json(a)
-            })
+            }).catch({ "error": "Error changing drink" })
     },
     delDrink: (req, res) => {
         Drink.findByIdAndDelete(req.params.drinkId
         ).then((a) => {
             res.json(a)
-        })
+        }).catch({ "error": "Error deleting drink" })
     },
     getDrinksById: (req, res) => {
         Drink.findById(req.params.drinkId).then((a) => {
             res.json(a)
-        })
+        }).catch({ "error": "Error when displaying a drink by id" })
     },
     getDrinks: (req, res) => {
         Drink.find({}, { price: 1, name: 1, _id: 1 }).then((a) => {
             res.json(a)
-        })
+        }).catch({ "error": "error when listing drinks" })
     },
     getDrinksStock: (req, res) => {
         Drink.find({ inStock: true }, { price: 1, name: 1, _id: 1, inStock: 1 }).then((a) => {
             res.json(a)
-        })
+        }).catch({ "error": "Error when displaying a drink in stock" })
     }
 }
